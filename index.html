@@ -5,55 +5,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gender Reveal</title>
     <style>
+        /* Reset the default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+            color: #333;
             text-align: center;
             padding: 50px;
-            background-color: #f0f0f0;
         }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            font-size: 1.5em;
+            color: #34495e;
+            margin-bottom: 40px;
+        }
+
+        .btn-reveal {
+            background-color: #3498db;
+            color: white;
+            padding: 20px 30px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-reveal:hover {
+            background-color: #2980b9;
+            transform: scale(1.1);
+        }
+
         .reveal-container {
             display: none;
+            margin-top: 30px;
             font-size: 2em;
             font-weight: bold;
             padding: 20px;
-            background-color: #fff;
+            background-color: white;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 60%;
+            margin: 30px auto;
+            transition: opacity 0.5s ease;
         }
-        .btn-reveal {
-            padding: 15px 25px;
-            font-size: 1.2em;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+
+        .blue {
+            color: #3498db;
+            animation: revealAnimation 1s ease-in-out;
         }
-        .btn-reveal:hover {
-            background-color: #2980b9;
+
+        .pink {
+            color: #e91e63;
+            animation: revealAnimation 1s ease-in-out;
         }
-        .blue { color: #3498db; }
+
+        /* Add animation for the reveal text */
+        @keyframes revealAnimation {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Add some nice background animation */
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/diamond-pattern.png');
+            z-index: -1;
+            animation: moveBackground 30s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 300px 300px;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Add a moving background -->
+    <div class="background-animation"></div>
+
     <h1>It's a Gender Reveal!</h1>
     <p>Click the button to find out the surprise!</p>
+    
     <button class="btn-reveal" onclick="revealGender()">Reveal Gender</button>
 
     <div class="reveal-container" id="reveal">
-        <p id="gender" class="blue"></p>
+        <p id="gender"></p>
     </div>
 
     <script>
         function revealGender() {
-            // Always reveal "Boy"
+            // Always reveal "Boy" for this example
             var gender = 'Boy';
-            var color = 'blue';  // Use blue for boy
+            var color = 'blue';  // Blue for boy
             document.getElementById('gender').textContent = "It's a " + gender + "!";
             document.getElementById('gender').className = color;
             document.getElementById('reveal').style.display = 'block';
         }
     </script>
+
 </body>
 </html>
