@@ -105,6 +105,13 @@
                 background-position: 300px 300px;
             }
         }
+
+        /* Countdown styling */
+        .countdown {
+            font-size: 2em;
+            color: #e74c3c;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -115,7 +122,11 @@
     <h1>It's a Gender Reveal!</h1>
     <p>Click the button to find out the surprise!</p>
     
-    <button class="btn-reveal" onclick="revealGender()">Reveal Gender</button>
+    <button class="btn-reveal" onclick="startCountdown()">Reveal Gender</button>
+
+    <div id="countdownContainer">
+        <p class="countdown" id="countdown">10</p>
+    </div>
 
     <div class="reveal-container" id="reveal">
         <p id="gender"></p>
@@ -125,21 +136,37 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti"></script>
 
     <script>
+        let countdownTimer;
+
+        // Function to start countdown from 10 to 1
+        function startCountdown() {
+            let countdownValue = 10;
+            document.getElementById('countdown').textContent = countdownValue;
+            countdownTimer = setInterval(function() {
+                countdownValue--;
+                document.getElementById('countdown').textContent = countdownValue;
+                
+                if (countdownValue <= 0) {
+                    clearInterval(countdownTimer);
+                    revealGender();
+                }
+            }, 1000); // Update every second
+        }
+
+        // Function to reveal gender and trigger confetti
         function revealGender() {
-            // Always reveal "Boy"
-            var gender = 'Boy';
+            var gender = 'Boy';  // Always reveal "Boy" for now
             var color = 'blue';  // Blue for boy
             document.getElementById('gender').textContent = "It's a " + gender + "!";
             document.getElementById('gender').className = color;
             document.getElementById('reveal').style.display = 'block';
-            
+
             // Trigger confetti effect
             triggerConfetti();
         }
 
         // Function to trigger confetti animation
         function triggerConfetti() {
-            // Create confetti when gender is revealed
             confetti({
                 particleCount: 200,
                 spread: 70,
