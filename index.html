@@ -121,14 +121,30 @@
         <p id="gender"></p>
     </div>
 
+    <!-- Include canvas-confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti"></script>
+
     <script>
         function revealGender() {
-            // Always reveal "Boy" for this example
+            // Always reveal "Boy"
             var gender = 'Boy';
             var color = 'blue';  // Blue for boy
             document.getElementById('gender').textContent = "It's a " + gender + "!";
             document.getElementById('gender').className = color;
             document.getElementById('reveal').style.display = 'block';
+            
+            // Trigger confetti effect
+            triggerConfetti();
+        }
+
+        // Function to trigger confetti animation
+        function triggerConfetti() {
+            // Create confetti when gender is revealed
+            confetti({
+                particleCount: 200,
+                spread: 70,
+                origin: { x: 0.5, y: 0.5 }
+            });
         }
     </script>
 
