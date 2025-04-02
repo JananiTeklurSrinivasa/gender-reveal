@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gender Reveal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f0f0f0;
+        }
+        .reveal-container {
+            display: none;
+            font-size: 2em;
+            font-weight: bold;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .btn-reveal {
+            padding: 15px 25px;
+            font-size: 1.2em;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-reveal:hover {
+            background-color: #2980b9;
+        }
+        .blue { color: #3498db; }
+    </style>
+</head>
+<body>
+    <h1>It's a Gender Reveal!</h1>
+    <p>Click the button to find out the surprise!</p>
+    <button class="btn-reveal" onclick="revealGender()">Reveal Gender</button>
+
+    <div class="reveal-container" id="reveal">
+        <p id="gender" class="blue"></p>
+    </div>
+
+    <script>
+        function revealGender() {
+            // Always reveal "Boy"
+            var gender = 'Boy';
+            var color = 'blue';  // Use blue for boy
+            document.getElementById('gender').textContent = "It's a " + gender + "!";
+            document.getElementById('gender').className = color;
+            document.getElementById('reveal').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
